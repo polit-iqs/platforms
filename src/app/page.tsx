@@ -207,7 +207,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0">
   <Select value={typeFilter} onValueChange={setTypeFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
-      <div className="flex items-center gap-0">
+      <div className="flex items-center gap-2">
         <Filter size={16} />
         <SelectValue placeholder="Type" />
       </div>
