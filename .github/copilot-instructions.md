@@ -1,0 +1,13 @@
+- use Next.js v15 (https://nextjs.org/docs)
+    - with App Router
+- ALWAYS use code for Tailwind CSS v4
+  - make sure to consult https://tailwindcss.com/docs/ to update your knowledge since many things that you think would work are actually outdated
+- if you want to test run, use `npm run dev`
+- use `shadcn/ui` components (https://ui.shadcn.com/docs/components)
+  - install via `npx shadcn@latest add`
+- follow best practices for UI/UX and web development
+- use colors from `globals.css` integrated into Tailwind CSS theme
+- make sure to understand the general api and page structure before making singular changes
+- do not create parallel infrastructures, prefer global solutions, do not hardcode things where it would be hard to find.
+- left align
+- follow clear design hierarchy

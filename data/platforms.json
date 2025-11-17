@@ -1,0 +1,84 @@
+
+[
+  {
+    "Name": "FragDenStaat",
+    "Link": "https://fragdenstaat.de",
+    "Description": "FOI request platform enabling citizens to file and track information requests.",
+    "Founders": "Arne Semsrott, Stefan Wehrmeyer",
+    "LinkedIn Link": "https://www.linkedin.com/company/fragdenstaat",
+    "Type": "FOI Platform"
+  },
+  {
+    "Name": "Open Knowledge Foundation Deutschland",
+    "Link": "https://okfn.de",
+    "Description": "NGO promoting open data, civic tech, and government transparency.",
+    "Founders": "Stefan Wehrmeyer, Friedrich Lindenberg",
+    "LinkedIn Link": "https://www.linkedin.com/company/open-knowledge-foundation-deutschland",
+    "Type": "NGO"
+  },
+  {
+    "Name": "GovData",
+    "Link": "https://www.govdata.de",
+    "Description": "Germany’s central open data portal for federal, state, and local datasets.",
+    "Founders": "Bundesministerium des Innern",
+    "LinkedIn Link": "https://www.linkedin.com/company/govdata-deutschland",
+    "Type": "Government Open Data Portal"
+  },
+  {
+    "Name": "Transparenzportal Hamburg",
+    "Link": "https://transparenz.hamburg.de",
+    "Description": "Mandatory disclosure portal for public documents under Hamburg’s transparency law.",
+    "Founders": "Freie und Hansestadt Hamburg",
+    "LinkedIn Link": "https://www.linkedin.com/company/freie-und-hansestadt-hamburg",
+    "Type": "State Transparency Portal"
+  },
+  {
+    "Name": "Bundestransparenzregister",
+    "Link": "https://www.transparenzregister.de",
+    "Description": "Central register documenting beneficial ownership of companies and associations.",
+    "Founders": "Bundesanzeiger Verlag",
+    "LinkedIn Link": "https://www.linkedin.com/company/bundesanzeiger-verlag",
+    "Type": "Beneficial Ownership Register"
+  },
+  {
+    "Name": "Lobbyregister Bundestag",
+    "Link": "https://www.lobbyregister.bundestag.de",
+    "Description": "Registry of organizations and individuals influencing federal political decision-making.",
+    "Founders": "Deutscher Bundestag",
+    "LinkedIn Link": "https://www.linkedin.com/company/deutscher-bundestag",
+    "Type": "Lobbying Transparency Register"
+  },
+  {
+    "Name": "Bundeshaushalt Transparent",
+    "Link": "https://www.bundeshaushalt.de",
+    "Description": "Federal budget transparency portal showing expenditures, revenues, and department budgets.",
+    "Founders": "Bundesministerium der Finanzen",
+    "LinkedIn Link": "https://www.linkedin.com/company/bundesministerium-der-finanzen",
+    "Type": "Budget Transparency Portal"
+  },
+  {
+    "Name": "Code for Germany",
+    "Link": "https://codefor.de",
+    "Description": "Civic tech network building transparency and participation tools.",
+    "Founders": "Open Knowledge Foundation Deutschland",
+    "LinkedIn Link": "https://www.linkedin.com/company/code-for-germany",
+    "Type": "Civic Tech Network"
+  },
+  {
+    "Name": "NRW Open Data Portal",
+    "Link": "https://open.nrw",
+    "Description": "Open data platform for ministries and public institutions in North Rhine–Westphalia.",
+    "Founders": "Land Nordrhein-Westfalen",
+    "LinkedIn Link": "https://www.linkedin.com/company/land-nordrhein-westfalen",
+    "Type": "State Open Data Portal"
+  },
+  {
+    "Name": "BayernPortal Open Data",
+    "Link": "https://www.bayern.de/service/opendata",
+    "Description": "State portal offering administrative data and public service transparency.",
+    "Founders": "Freistaat Bayern",
+    "LinkedIn Link": "https://www.linkedin.com/company/freistaat-bayern",
+    "Type": "State Open Data Portal"
+  }
+]
+
