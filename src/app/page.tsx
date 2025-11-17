@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 
 interface Platform {
@@ -87,8 +88,11 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Border Animations */}
+      <BorderAnimation />
+
       {/* Fixed Top Bar */}
-      <div className="fixed top-0 left-0 right-0 bg-background border-b-2 border-border z-50">
+<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md border-b-2 border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
           <img
             src="/images/politiqs.png"
@@ -96,89 +100,89 @@ export default function HomePage() {
             className="h-10 w-auto select-none"
             draggable="false"
           />
-          <h1 className="text-xl sm:text-2xl font-bold text-foreground">Transparency Portals</h1>
-        </div>
+<h1 className="text-xl sm:text-2xl font-bold text-foreground font-poppins">
+  ALETHIA
+</h1>        </div>
       </div>
 
       <main className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 pt-24">
         <div className="max-w-7xl mx-auto py-8">
           {/* Header - Description section */}
-          <div className="mb-12">
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-8">
-              Explore Germany's digital infrastructure for government transparency, open data, and civic participation.
-            </p>
-          </div>
+       
 
           {/* Search and Filters */}
           <div className="mb-8 space-y-4">
+            <div className="mb-0 space-y-0">
             <Input
               type="text"
-              placeholder="Search portals..."
+              placeholder="Suche Portale..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-base rounded-none border-2"
+              className="w-full text-base rounded-none border-2 h-12"
             />
             
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4">
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="rounded-none border-2">
-                  <SelectValue placeholder="Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  {types.map(type => (
-                    <SelectItem key={type} value={type}>{type}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+          <div className="grid grid-cols-5 gap-0">
+  <Select value={typeFilter} onValueChange={setTypeFilter}>
+    <SelectTrigger className="w-full rounded-none border-2">
+      <SelectValue placeholder="Type" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="all">Alle Arten</SelectItem>
+      {types.map(type => (
+        <SelectItem key={type} value={type}>{type}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
 
-              <Select value={themeFilter} onValueChange={setThemeFilter}>
-                <SelectTrigger className="rounded-none border-2">
-                  <SelectValue placeholder="Theme" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Themes</SelectItem>
-                  {themes.map(theme => (
-                    <SelectItem key={theme} value={theme}>{theme}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+  <Select value={themeFilter} onValueChange={setThemeFilter}>
+    <SelectTrigger className="w-full rounded-none border-2">
+      <SelectValue placeholder="Theme" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="all">Alle Themen</SelectItem>
+      {themes.map(theme => (
+        <SelectItem key={theme} value={theme}>{theme}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
 
-              <Select value={regionFilter} onValueChange={setRegionFilter}>
-                <SelectTrigger className="rounded-none border-2">
-                  <SelectValue placeholder="Region" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Regions</SelectItem>
-                  {regions.map(region => (
-                    <SelectItem key={region} value={region}>{region}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+  <Select value={regionFilter} onValueChange={setRegionFilter}>
+    <SelectTrigger className="w-full rounded-none border-2">
+      <SelectValue placeholder="Region" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="all">Alle Regionen</SelectItem>
+      {regions.map(region => (
+        <SelectItem key={region} value={region}>{region}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
 
-              <Select value={levelFilter} onValueChange={setLevelFilter}>
-                <SelectTrigger className="rounded-none border-2">
-                  <SelectValue placeholder="Level" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Levels</SelectItem>
-                  {levels.map(level => (
-                    <SelectItem key={level} value={level}>{level}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+  <Select value={levelFilter} onValueChange={setLevelFilter}>
+    <SelectTrigger className="w-full rounded-none border-2">
+      <SelectValue placeholder="Level" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="all">Alle Ebenen</SelectItem>
+      {levels.map(level => (
+        <SelectItem key={level} value={level}>{level}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
 
-              <Button 
-                onClick={resetFilters}
-                variant="outline"
-                className="rounded-none border-2 hover:bg-foreground hover:text-background transition-colors"
-              >
-                Reset
-              </Button>
+  <Button
+    onClick={resetFilters}
+    variant="outline"
+    className="w-full rounded-none border-2 hover:bg-foreground hover:text-background transition-colors"
+  >
+    Filter zurücksetzen
+  </Button>
+</div>
             </div>
 
-            <div className="text-sm text-muted-foreground">
-              Showing {filteredPlatforms.length} of {platforms.length} portals
+
+            <div className="mt-4 text-sm text-muted-foreground">
+              Zeige {filteredPlatforms.length} von {platforms.length} Portalen
             </div>
           </div>
 
@@ -186,7 +190,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
             {filteredPlatforms.length === 0 ? (
               <div className="col-span-full text-center py-16 text-muted-foreground">
-                No portals found matching your filters.
+                Keine Portale gefunden, die Ihren Filtern entsprechen.
               </div>
             ) : (
               filteredPlatforms.map((platform, index) => (
@@ -211,7 +215,7 @@ export default function HomePage() {
                           </h2>
                         </div>
                         <div className="text-sm text-muted-foreground font-medium">
-                          Hover to learn more →
+                          Mehr erfahren →
                         </div>
                       </div>
 
@@ -222,11 +226,11 @@ export default function HomePage() {
                             {platform.Description}
                           </p>
                           <div className="text-xs opacity-75">
-                            <span className="font-semibold">Founded by:</span> {platform.Founders}
+                            <span className="font-semibold">Gegründet von:</span> {platform.Founders}
                           </div>
                         </div>
                         <div className="text-sm font-medium opacity-90">
-                          Click to visit →
+                          Website besuchen →
                         </div>
                       </div>
                     </div>
