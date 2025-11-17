@@ -1,84 +1,222 @@
-
 [
   {
     "Name": "FragDenStaat",
     "Link": "https://fragdenstaat.de",
-    "Description": "FOI request platform enabling citizens to file and track information requests.",
+    "Description": "Plattform für Informationsfreiheitsanfragen, über die Bürger Anfragen stellen und verfolgen können.",
     "Founders": "Arne Semsrott, Stefan Wehrmeyer",
     "LinkedIn Link": "https://www.linkedin.com/company/fragdenstaat",
-    "Type": "FOI Platform"
+    "Type": "IFG-Plattform",
+    "Themes": ["Informationsfreiheit", "Civic Tech", "Transparenz"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "Open Knowledge Foundation Deutschland",
     "Link": "https://okfn.de",
-    "Description": "NGO promoting open data, civic tech, and government transparency.",
+    "Description": "NGO zur Förderung offener Daten, Civic Tech und staatlicher Transparenz.",
     "Founders": "Stefan Wehrmeyer, Friedrich Lindenberg",
     "LinkedIn Link": "https://www.linkedin.com/company/open-knowledge-foundation-deutschland",
-    "Type": "NGO"
+    "Type": "NGO",
+    "Themes": ["Offene Daten", "Digitale Verwaltung", "Civic Tech"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "GovData",
     "Link": "https://www.govdata.de",
-    "Description": "Germany’s central open data portal for federal, state, and local datasets.",
+    "Description": "Zentrales Open-Data-Portal Deutschlands für Daten von Bund, Ländern und Kommunen.",
     "Founders": "Bundesministerium des Innern",
     "LinkedIn Link": "https://www.linkedin.com/company/govdata-deutschland",
-    "Type": "Government Open Data Portal"
+    "Type": "Regierungs-Open-Data-Portal",
+    "Themes": ["Offene Daten", "Digitale Dienste"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "Transparenzportal Hamburg",
     "Link": "https://transparenz.hamburg.de",
-    "Description": "Mandatory disclosure portal for public documents under Hamburg’s transparency law.",
+    "Description": "Offenlegungspflicht-Portal für öffentliche Dokumente nach dem Hamburger Transparenzgesetz.",
     "Founders": "Freie und Hansestadt Hamburg",
     "LinkedIn Link": "https://www.linkedin.com/company/freie-und-hansestadt-hamburg",
-    "Type": "State Transparency Portal"
+    "Type": "Landes-Transparenzportal",
+    "Themes": ["Transparenz", "Offenlegung", "Öffentliche Dokumente"],
+    "Regions": ["Hamburg"],
+    "Level": "Land"
   },
   {
     "Name": "Bundestransparenzregister",
     "Link": "https://www.transparenzregister.de",
-    "Description": "Central register documenting beneficial ownership of companies and associations.",
+    "Description": "Zentrales Register zur Erfassung wirtschaftlich Berechtigter von Unternehmen und Vereinen.",
     "Founders": "Bundesanzeiger Verlag",
     "LinkedIn Link": "https://www.linkedin.com/company/bundesanzeiger-verlag",
-    "Type": "Beneficial Ownership Register"
+    "Type": "Register wirtschaftlich Berechtigter",
+    "Themes": ["Wirtschaftlich Berechtigte", "Unternehmens­transparenz"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "Lobbyregister Bundestag",
     "Link": "https://www.lobbyregister.bundestag.de",
-    "Description": "Registry of organizations and individuals influencing federal political decision-making.",
+    "Description": "Register für Organisationen und Personen, die politischen Einfluss auf Bundesebene ausüben.",
     "Founders": "Deutscher Bundestag",
     "LinkedIn Link": "https://www.linkedin.com/company/deutscher-bundestag",
-    "Type": "Lobbying Transparency Register"
+    "Type": "Lobbytransparenzregister",
+    "Themes": ["Lobbyismus", "Politische Transparenz", "Rechenschaft"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "Bundeshaushalt Transparent",
     "Link": "https://www.bundeshaushalt.de",
-    "Description": "Federal budget transparency portal showing expenditures, revenues, and department budgets.",
+    "Description": "Transparenzportal zum Bundeshaushalt mit Ausgaben, Einnahmen und Einzelplänen.",
     "Founders": "Bundesministerium der Finanzen",
     "LinkedIn Link": "https://www.linkedin.com/company/bundesministerium-der-finanzen",
-    "Type": "Budget Transparency Portal"
+    "Type": "Haushaltstransparenz-Portal",
+    "Themes": ["Haushalt", "Öffentliche Finanzen", "Fiskaltransparenz"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "Code for Germany",
     "Link": "https://codefor.de",
-    "Description": "Civic tech network building transparency and participation tools.",
+    "Description": "Civic-Tech-Netzwerk zur Entwicklung von Transparenz- und Beteiligungstools.",
     "Founders": "Open Knowledge Foundation Deutschland",
     "LinkedIn Link": "https://www.linkedin.com/company/code-for-germany",
-    "Type": "Civic Tech Network"
+    "Type": "Civic-Tech-Netzwerk",
+    "Themes": ["Civic Tech", "Offene Daten", "Digitale Beteiligung"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
   },
   {
     "Name": "NRW Open Data Portal",
     "Link": "https://open.nrw",
-    "Description": "Open data platform for ministries and public institutions in North Rhine–Westphalia.",
+    "Description": "Open-Data-Plattform für Ministerien und öffentliche Einrichtungen in Nordrhein-Westfalen.",
     "Founders": "Land Nordrhein-Westfalen",
     "LinkedIn Link": "https://www.linkedin.com/company/land-nordrhein-westfalen",
-    "Type": "State Open Data Portal"
+    "Type": "Landes-Open-Data-Portal",
+    "Themes": ["Offene Daten", "Digitale Dienste"],
+    "Regions": ["Nordrhein-Westfalen"],
+    "Level": "Land"
   },
   {
     "Name": "BayernPortal Open Data",
     "Link": "https://www.bayern.de/service/opendata",
-    "Description": "State portal offering administrative data and public service transparency.",
+    "Description": "Landesportal für Verwaltungsdaten und öffentliche Service-Transparenz in Bayern.",
     "Founders": "Freistaat Bayern",
     "LinkedIn Link": "https://www.linkedin.com/company/freistaat-bayern",
-    "Type": "State Open Data Portal"
+    "Type": "Landes-Open-Data-Portal",
+    "Themes": ["Offene Daten", "Öffentliche Dienste"],
+    "Regions": ["Bayern"],
+    "Level": "Land"
+  },
+  {
+    "Name": "Transparency International Deutschland",
+    "Link": "https://transparency.de",
+    "Description": "NGO zur Bekämpfung von Korruption und Förderung staatlicher Integrität.",
+    "Founders": "Transparency International",
+    "LinkedIn Link": "https://www.linkedin.com/company/transparency-international-deutschland",
+    "Type": "Anti-Korruptions-NGO",
+    "Themes": ["Korruptionsbekämpfung", "Transparenz", "Integrität"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
+  },
+  {
+    "Name": "Bundeszentrale für politische Bildung – Open Data",
+    "Link": "https://www.bpb.de",
+    "Description": "Politische Informationsdaten und öffentlich zugängliche Materialien.",
+    "Founders": "Bundesministerium des Innern",
+    "LinkedIn Link": "https://www.linkedin.com/company/bundeszentrale-fur-politische-bildung",
+    "Type": "Informationsportal",
+    "Themes": ["Politische Bildung", "Offene Daten"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
+  },
+  {
+    "Name": "Open Data Portal Berlin",
+    "Link": "https://daten.berlin.de",
+    "Description": "Open-Data-Portal des Landes Berlin.",
+    "Founders": "Land Berlin",
+    "LinkedIn Link": "https://www.linkedin.com/company/land-berlin",
+    "Type": "Landes-Open-Data-Portal",
+    "Themes": ["Offene Daten", "Digitale Verwaltung"],
+    "Regions": ["Berlin"],
+    "Level": "Land"
+  },
+  {
+    "Name": "Open Data Portal Baden-Württemberg",
+    "Link": "https://www.service-bw.de/opendata",
+    "Description": "Offene Daten der Landesverwaltung Baden-Württemberg.",
+    "Founders": "Land Baden-Württemberg",
+    "LinkedIn Link": "https://www.linkedin.com/company/baden-württemberg",
+    "Type": "Landes-Open-Data-Portal",
+    "Themes": ["Offene Daten", "Verwaltung"],
+    "Regions": ["Baden-Württemberg"],
+    "Level": "Land"
+  },
+  {
+    "Name": "OffenerHaushalt.de",
+    "Link": "https://offenerhaushalt.de",
+    "Description": "Visualisierung staatlicher und kommunaler Haushaltsdaten.",
+    "Founders": "Open Knowledge Foundation Deutschland",
+    "LinkedIn Link": "https://www.linkedin.com/company/open-knowledge-foundation-deutschland",
+    "Type": "Haushaltstransparenztool",
+    "Themes": ["Haushalt", "Transparenz", "Finanzdaten"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund/Kommune"
+  },
+  {
+    "Name": "Abgeordnetenwatch",
+    "Link": "https://www.abgeordnetenwatch.de",
+    "Description": "Kontrollplattform für Abgeordnete und Lobbyeinflüsse.",
+    "Founders": "Parlamentwatch e.V.",
+    "LinkedIn Link": "https://www.linkedin.com/company/abgeordnetenwatch",
+    "Type": "Transparenzplattform",
+    "Themes": ["Politische Transparenz", "Lobbykontrolle"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund/Land"
+  },
+  {
+    "Name": "GovLab Arnsberg",
+    "Link": "https://www.govlab.de",
+    "Description": "Innovationslabor für digitale Verwaltungsdienste.",
+    "Founders": "Bezirksregierung Arnsberg",
+    "LinkedIn Link": "https://www.linkedin.com/company/bezirksregierung-arnsberg",
+    "Type": "GovTech-Lab",
+    "Themes": ["GovTech", "Digitale Verwaltung"],
+    "Regions": ["Deutschland"],
+    "Level": "Land"
+  },
+  {
+    "Name": "DigitalService Bund",
+    "Link": "https://digitalservice.bund.de",
+    "Description": "Bundesagentur für die Entwicklung digitaler staatlicher Services.",
+    "Founders": "Bundeskanzleramt",
+    "LinkedIn Link": "https://www.linkedin.com/company/digitalservicebund",
+    "Type": "GovTech-Organisation",
+    "Themes": ["Digitale Verwaltung", "Service-Design"],
+    "Regions": ["Deutschland"],
+    "Level": "Bund"
+  },
+  {
+    "Name": "Open Data Portal Sachsen",
+    "Link": "https://opendata.sachsen.de",
+    "Description": "Open-Data-Portal des Freistaats Sachsen.",
+    "Founders": "Freistaat Sachsen",
+    "LinkedIn Link": "https://www.linkedin.com/company/freistaat-sachsen",
+    "Type": "Landes-Open-Data-Portal",
+    "Themes": ["Offene Daten"],
+    "Regions": ["Sachsen"],
+    "Level": "Land"
+  },
+  {
+    "Name": "Transparenzplattform Baden-Württemberg",
+    "Link": "https://transparenz-bw.de",
+    "Description": "Plattform für Informationsfreiheitsanfragen im Land Baden-Württemberg.",
+    "Founders": "Land Baden-Württemberg",
+    "LinkedIn Link": "https://www.linkedin.com/company/baden-württemberg",
+    "Type": "Landes-Transparenzportal",
+    "Themes": ["Transparenz", "Informationsfreiheit"],
+    "Regions": ["Baden-Württemberg"],
+    "Level": "Land"
   }
 ]
-

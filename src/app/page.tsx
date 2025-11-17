@@ -1,27 +1,242 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import platformsData from "@/data/platforms.json";
+
+interface Platform {
+  Name: string;
+  Link: string;
+  Description: string;
+  Founders: string;
+  "LinkedIn Link": string;
+  Type: string;
+  Themes: string[];
+  Regions: string[];
+  Level: string;
+}
+
+const platforms: Platform[] = platformsData;
 
 export default function HomePage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [typeFilter, setTypeFilter] = useState("all");
+  const [themeFilter, setThemeFilter] = useState("all");
+  const [regionFilter, setRegionFilter] = useState("all");
+  const [levelFilter, setLevelFilter] = useState("all");
+
+  // Extract unique values from platforms data
+  const types = useMemo(() => {
+    const uniqueTypes = Array.from(new Set(platforms.map(p => p.Type)));
+    return uniqueTypes.sort();
+  }, []);
+
+  const themes = useMemo(() => {
+    const allThemes = platforms.flatMap(p => p.Themes);
+    const uniqueThemes = Array.from(new Set(allThemes));
+    return uniqueThemes.sort();
+  }, []);
+
+  const regions = useMemo(() => {
+    const allRegions = platforms.flatMap(p => p.Regions);
+    const uniqueRegions = Array.from(new Set(allRegions));
+    return uniqueRegions.sort();
+  }, []);
+
+  const levels = useMemo(() => {
+    const uniqueLevels = Array.from(new Set(platforms.map(p => p.Level)));
+    return uniqueLevels.sort();
+  }, []);
+
+  // Reset all filters
+  const resetFilters = () => {
+    setSearchQuery("");
+    setTypeFilter("all");
+    setThemeFilter("all");
+    setRegionFilter("all");
+    setLevelFilter("all");
+  };
+
+  // Filter platforms
+  const filteredPlatforms = useMemo(() => {
+    return platforms.filter(platform => {
+      // Search filter
+      const matchesSearch = searchQuery === "" || 
+        platform.Name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        platform.Description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        platform.Type.toLowerCase().includes(searchQuery.toLowerCase());
+
+      // Type filter
+      const matchesType = typeFilter === "all" || platform.Type === typeFilter;
+
+      // Theme filter
+      const matchesTheme = themeFilter === "all" || platform.Themes.includes(themeFilter);
+
+      // Region filter
+      const matchesRegion = regionFilter === "all" || platform.Regions.includes(regionFilter);
+
+      // Level filter
+      const matchesLevel = levelFilter === "all" || platform.Level === levelFilter;
+
+      return matchesSearch && matchesType && matchesTheme && matchesRegion && matchesLevel;
+    });
+  }, [searchQuery, typeFilter, themeFilter, regionFilter, levelFilter]);
 
   return (
-    <main className="min-h-screen bg-background px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto py-8 space-y-8">
-        {/* Logo and Header */}
-        <div>
+    <>
+      {/* Fixed Top Bar */}
+      <div className="fixed top-0 left-0 right-0 bg-background border-b-2 border-border z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
           <img
             src="/images/politiqs.png"
             alt="Politiqs Logo"
-            className="h-10 sm:h-12 w-auto select-none mb-8"
+            className="h-10 w-auto select-none"
             draggable="false"
           />
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground mb-2">
-            Politiqs Platform
-          </h1>
-          <p className="text-muted-foreground leading-relaxed">
-            A modern, responsive foundation for PolitIQS web applications.
-          </p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground">Transparency Portals</h1>
         </div>
-
-    
       </div>
-    </main>
+
+      <main className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 pt-24">
+        <div className="max-w-7xl mx-auto py-8">
+          {/* Header - Description section */}
+          <div className="mb-12">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-8">
+              Explore Germany's digital infrastructure for government transparency, open data, and civic participation.
+            </p>
+          </div>
+
+          {/* Search and Filters */}
+          <div className="mb-8 space-y-4">
+            <Input
+              type="text"
+              placeholder="Search portals..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full text-base rounded-none border-2"
+            />
+            
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+              <Select value={typeFilter} onValueChange={setTypeFilter}>
+                <SelectTrigger className="rounded-none border-2">
+                  <SelectValue placeholder="Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Types</SelectItem>
+                  {types.map(type => (
+                    <SelectItem key={type} value={type}>{type}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={themeFilter} onValueChange={setThemeFilter}>
+                <SelectTrigger className="rounded-none border-2">
+                  <SelectValue placeholder="Theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Themes</SelectItem>
+                  {themes.map(theme => (
+                    <SelectItem key={theme} value={theme}>{theme}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={regionFilter} onValueChange={setRegionFilter}>
+                <SelectTrigger className="rounded-none border-2">
+                  <SelectValue placeholder="Region" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Regions</SelectItem>
+                  {regions.map(region => (
+                    <SelectItem key={region} value={region}>{region}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={levelFilter} onValueChange={setLevelFilter}>
+                <SelectTrigger className="rounded-none border-2">
+                  <SelectValue placeholder="Level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Levels</SelectItem>
+                  {levels.map(level => (
+                    <SelectItem key={level} value={level}>{level}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Button 
+                onClick={resetFilters}
+                variant="outline"
+                className="rounded-none border-2 hover:bg-foreground hover:text-background transition-colors"
+              >
+                Reset
+              </Button>
+            </div>
+
+            <div className="text-sm text-muted-foreground">
+              Showing {filteredPlatforms.length} of {platforms.length} portals
+            </div>
+          </div>
+
+          {/* Portal Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+            {filteredPlatforms.length === 0 ? (
+              <div className="col-span-full text-center py-16 text-muted-foreground">
+                No portals found matching your filters.
+              </div>
+            ) : (
+              filteredPlatforms.map((platform, index) => (
+                <a
+                  key={index}
+                  href={platform.Link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <Card className="h-[280px] relative overflow-hidden border-2 border-border hover:border-foreground transition-all duration-300 cursor-pointer perspective-1000 p-0 rounded-none">
+                    {/* Card Inner - Flip Container */}
+                    <div className="relative w-full h-full transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+                      {/* Front Face */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden bg-card p-6 flex flex-col justify-between">
+                        <div>
+                          <div className="inline-block px-3 py-1 bg-foreground text-background text-xs font-medium rounded-none mb-4">
+                            {platform.Type}
+                          </div>
+                          <h2 className="text-2xl font-bold text-foreground mb-3 leading-tight">
+                            {platform.Name}
+                          </h2>
+                        </div>
+                        <div className="text-sm text-muted-foreground font-medium">
+                          Hover to learn more →
+                        </div>
+                      </div>
+
+                      {/* Back Face */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden bg-foreground text-background p-6 flex flex-col justify-between rotate-y-180">
+                        <div>
+                          <p className="text-sm leading-relaxed mb-4 opacity-90">
+                            {platform.Description}
+                          </p>
+                          <div className="text-xs opacity-75">
+                            <span className="font-semibold">Founded by:</span> {platform.Founders}
+                          </div>
+                        </div>
+                        <div className="text-sm font-medium opacity-90">
+                          Click to visit →
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </a>
+              ))
+            )}
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
