@@ -92,7 +92,7 @@ export default function HomePage() {
       <BorderAnimation />
 
       {/* Fixed Top Bar */}
-<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md border-b-2 border-border z-50">
+<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
           <img
             src="/images/politiqs.png"
@@ -101,7 +101,7 @@ export default function HomePage() {
             draggable="false"
           />
 <h1 className="text-xl sm:text-2xl font-bold text-foreground font-poppins">
-  ALETHIA
+  
 </h1>        </div>
       </div>
 
