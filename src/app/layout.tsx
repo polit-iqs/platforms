@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Transparenzportale",
+    title: "PolitIQS | Portal",
     description: "",
+        icons: {
+        icon: "/politiqs.ico"
+    }
 };
 
 export default function RootLayout({

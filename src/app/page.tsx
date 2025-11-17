@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 
@@ -61,6 +62,55 @@ export default function HomePage() {
     setLevelFilter("all");
   };
 
+  // Download CSV function
+  const downloadCSV = () => {
+    const headers = ["Name", "Type", "Link", "Description", "Themes", "Regions", "Level"];
+    const csvContent = [
+      headers.join(","),
+      ...filteredPlatforms.map(p =>
+        [
+          `"${p.Name}"`,
+          `"${p.Type}"`,
+          `"${p.Link}"`,
+          `"${p.Description}"`,
+          `"${p.Themes.join("; ")}"`,
+          `"${p.Regions.join("; ")}"`,
+          `"${p.Level}"`,
+        ].join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "transparency-portals.csv";
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  // Share function
+  const sharePortals = () => {
+    const text = `Check out these transparency portals: ${window.location.href}`;
+    if (navigator.share) {
+      navigator.share({
+        title: "Transparency Portals",
+        text: text,
+      });
+    } else {
+      navigator.clipboard.writeText(text);
+      alert("Link copied to clipboard!");
+    }
+  };
+
+  // Suggest Edit function
+  const suggestEdit = () => {
+    window.open(
+      "https://github.com/polit-iqs/platforms/issues/new",
+      "_blank"
+    );
+  };
+
   // Filter platforms
   const filteredPlatforms = useMemo(() => {
     return platforms.filter(platform => {
@@ -92,39 +142,75 @@ export default function HomePage() {
       <BorderAnimation />
 
       {/* Fixed Top Bar */}
-<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center gap-0">
-          <img
-            src="/images/politiqs.png"
-            alt="Politiqs Logo"
-            className="h-15 w-auto select-none"
-            draggable="false"
-          />
-<h1 className="text-xl sm:text-2xl font-bold text-foreground font-poppins">
-  
-</h1>        </div>
+<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md border-b-2 border-border z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <img
+              src="/images/politiqs.png"
+              alt="Politiqs Logo"
+              className="h-10 w-auto select-none"
+              draggable="false"
+            />
+            <h1 className="hidden md:block text-xl sm:text-2xl font-bold text-foreground">
+              NOMOS
+            </h1>
+          </div>
+          <div className="hidden md:flex items-center gap-2">
+            <Button
+              onClick={sharePortals}
+              variant="outline"
+              className="rounded-none border-2 text-sm bg-foreground text-background
+              hover:text-foreground hover:bg-background flex items-center gap-2"
+            >
+              <Share2 size={16} />
+              Teilen
+            </Button>
+            <Button
+              onClick={downloadCSV}
+              variant="outline"
+             className="rounded-none border-2 text-sm bg-foreground text-background
+              hover:text-foreground hover:bg-background flex items-center gap-2"
+            >
+              <Download size={16} />
+              CSV herunterladen
+            </Button>
+            <Button
+              onClick={suggestEdit}
+              variant="outline"
+                 className="rounded-none border-2 text-sm bg-foreground text-background
+              hover:text-foreground hover:bg-background flex items-center gap-2"
+            >
+              <MessageSquare size={16} />
+              Portal ergänzen
+            </Button>
+          </div>
+        </div>
       </div>
 
-      <main className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 pt-24">
+      <main className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
         <div className="max-w-7xl mx-auto py-8">
           {/* Header - Description section */}
        
 
           {/* Search and Filters */}
           <div className="mb-8 space-y-4">
-            <div className="mb-0 space-y-0">
+            <div className="mb-0 space-y-0 relative">
+            <Search className="absolute left-4 top-3.5 text-muted-foreground" size={18} />
             <Input
               type="text"
               placeholder="Suche Portale..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-base rounded-none border-2 h-12"
+              className="w-full text-base rounded-none border-2 h-12 pl-12"
             />
             
-          <div className="grid grid-cols-5 gap-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0">
   <Select value={typeFilter} onValueChange={setTypeFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
-      <SelectValue placeholder="Type" />
+      <div className="flex items-center gap-0">
+        <Filter size={16} />
+        <SelectValue placeholder="Type" />
+      </div>
     </SelectTrigger>
     <SelectContent>
       <SelectItem value="all">Alle Arten</SelectItem>
@@ -136,7 +222,10 @@ export default function HomePage() {
 
   <Select value={themeFilter} onValueChange={setThemeFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
-      <SelectValue placeholder="Theme" />
+      <div className="flex items-center gap-2">
+        <Filter size={16} />
+        <SelectValue placeholder="Theme" />
+      </div>
     </SelectTrigger>
     <SelectContent>
       <SelectItem value="all">Alle Themen</SelectItem>
@@ -148,7 +237,10 @@ export default function HomePage() {
 
   <Select value={regionFilter} onValueChange={setRegionFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
-      <SelectValue placeholder="Region" />
+      <div className="flex items-center gap-2">
+        <Filter size={16} />
+        <SelectValue placeholder="Region" />
+      </div>
     </SelectTrigger>
     <SelectContent>
       <SelectItem value="all">Alle Regionen</SelectItem>
@@ -160,7 +252,10 @@ export default function HomePage() {
 
   <Select value={levelFilter} onValueChange={setLevelFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
-      <SelectValue placeholder="Level" />
+      <div className="flex items-center gap-2">
+        <Filter size={16} />
+        <SelectValue placeholder="Level" />
+      </div>
     </SelectTrigger>
     <SelectContent>
       <SelectItem value="all">Alle Ebenen</SelectItem>
@@ -173,9 +268,11 @@ export default function HomePage() {
   <Button
     onClick={resetFilters}
     variant="outline"
-    className="w-full rounded-none border-2 hover:bg-foreground hover:text-background transition-colors"
+    className="w-full rounded-none border-2 hover:bg-foreground hover:text-background transition-colors flex items-center justify-center gap-2"
   >
-    Filter zurücksetzen
+    <RotateCcw size={16} />
+    <span className="hidden sm:inline">Filter zurücksetzen</span>
+    <span className="sm:hidden">Reset</span>
   </Button>
 </div>
             </div>
@@ -190,7 +287,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
             {filteredPlatforms.length === 0 ? (
               <div className="col-span-full text-center py-16 text-muted-foreground">
-                Keine Portale gefunden, die Ihren Filtern entsprechen.
+                Keine Portale gefunden, die deinen Filtern entsprechen.
               </div>
             ) : (
               filteredPlatforms.map((platform, index) => (
@@ -230,7 +327,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="text-sm font-medium opacity-90">
-                          Website besuchen →
+                          Zum Portal →
                         </div>
                       </div>
                     </div>
