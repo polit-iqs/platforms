@@ -32,7 +32,7 @@ export default function HomePage() {
   const [levelFilter, setLevelFilter] = useState("all");
   const [sortBy, setSortBy] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const [itemsPerPage, setItemsPerPage] = useState(30);
 
   // Extract unique values from platforms data
   const types = useMemo(() => {
@@ -66,7 +66,7 @@ export default function HomePage() {
     setLevelFilter("all");
     setSortBy("name");
     setCurrentPage(1);
-    setItemsPerPage(20);
+    setItemsPerPage(30);
   };
 
   // Download CSV function
