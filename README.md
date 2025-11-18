@@ -1,6 +1,3 @@
-Internship Evaluation for CRAF'd
+PolitIQS Platforms
 
-Tables about funding in the data folder
-in there, you find 2 tables
-
-Analyse them, and show their graphs on website
+Tool to visualize all transparency tools in europe
