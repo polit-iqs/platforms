@@ -410,7 +410,7 @@ export default function HomePage() {
                           >
                             <Star 
                               size={20} 
-                              className={starred.includes(platform.Name) ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"} 
+                              className={starred.includes(platform.Name) ? "fill-black text-black-400" : "text-muted-foreground"} 
                             />
                           </button>
                           <div className="inline-block px-3 py-1 bg-foreground text-background text-xs font-medium rounded-none mb-4">
@@ -435,16 +435,19 @@ export default function HomePage() {
                             <span className="font-semibold">{labels.cards.foundedBy}</span> {platform.Founders}
                           </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="text-sm text-black font-medium opacity-90 bg-white border-white hover:bg-slate-300 hover:border-slate-300 hover:text-white rounded-none w-full"
+                        >
                           <a 
                             href={platform.Link} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="hover:underline"
                           >
                             {labels.cards.visit}
                           </a>
-                        </div>
+                        </Button>
                       </div>
                     </div>
                   </Card>
