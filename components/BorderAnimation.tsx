@@ -88,7 +88,7 @@ export default function SideCornerSquares() {
       });
     };
 
-    const h = setInterval(spawn, 500);
+    const h = setInterval(spawn, 600);
     return () => clearInterval(h);
   }, []);
 
