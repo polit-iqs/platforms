@@ -142,7 +142,7 @@ export default function HomePage() {
       <BorderAnimation />
 
       {/* Fixed Top Bar */}
-<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md border-b-2 border-border z-50">
+<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <img
@@ -185,14 +185,15 @@ export default function HomePage() {
         </div>
       </div>
 
-      <main className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
+<main className="min-h-screen bg-[radial-gradient(circle,_white_0%,_white_55%,_#f1f5f9_100%)] px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
+
         <div className="max-w-7xl mx-auto py-8">
           {/* Header - Description section */}
        
 
           {/* Search and Filters */}
           <div className="mb-8 space-y-4">
-            <div className="mb-0 space-y-0 relative">
+            <div className="mb-0 space-y-0 relative bg-background">
             <Search className="absolute left-4 top-3.5 text-muted-foreground" size={18} />
             <Input
               type="text"

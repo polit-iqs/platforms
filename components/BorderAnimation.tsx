@@ -88,7 +88,7 @@ export default function SideCornerSquares() {
       });
     };
 
-    const h = setInterval(spawn, 700);
+    const h = setInterval(spawn, 500);
     return () => clearInterval(h);
   }, []);
 
@@ -98,18 +98,18 @@ export default function SideCornerSquares() {
         prev
           .map((sq): Sq => {
             if (sq.phase === "in") {
-              const next = sq.opacity + 0.04;
+              const next = sq.opacity + 0.02;
               if (next >= 1) return { ...sq, opacity: 1, phase: "hold", timer: 0 };
               return { ...sq, opacity: next };
             }
 
             if (sq.phase === "hold") {
-              if (sq.timer > 40) return { ...sq, phase: "out" };
+              if (sq.timer > 80) return { ...sq, phase: "out" };
               return { ...sq, timer: sq.timer + 1 };
             }
 
             if (sq.phase === "out") {
-              const next = sq.opacity - 0.03;
+              const next = sq.opacity - 0.04;
               return { ...sq, opacity: Math.max(0, next) };
             }
 

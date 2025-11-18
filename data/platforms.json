@@ -988,5 +988,104 @@
     "Themes": ["Offene Daten", "Verwaltung"],
     "Regions": ["Schweiz"],
     "Level": "Land"
+  },
+  {
+    "Name": "Open Data Portal Bremen-Nord",
+    "Link": "https://daten.bremen-nord.de",
+    "Description": "Offene Daten für die Region Bremen-Nord.",
+    "Founders": "Stadt Bremen-Nord",
+    "LinkedIn Link": "https://www.linkedin.com/company/stadt-bremen-nord",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Bremen-Nord"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Ruhrgebiet",
+    "Link": "https://opendata.ruhr",
+    "Description": "Offene Daten für das Ruhrgebiet.",
+    "Founders": "Metropole Ruhr",
+    "LinkedIn Link": "https://www.linkedin.com/company/metropole-ruhr",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Ruhrgebiet"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Rhein-Main",
+    "Link": "https://opendata.rhein-main.de",
+    "Description": "Offene Daten für die Rhein-Main-Region.",
+    "Founders": "Region Frankfurt RheinMain",
+    "LinkedIn Link": "https://www.linkedin.com/company/region-frankfurt-rheinmain",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Rhein-Main"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Oberbayern",
+    "Link": "https://opendata.oberbayern.de",
+    "Description": "Offene Daten für Oberbayern.",
+    "Founders": "Bezirk Oberbayern",
+    "LinkedIn Link": "https://www.linkedin.com/company/bezirk-oberbayern",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Oberbayern"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Lausitz",
+    "Link": "https://opendata.lausitz.de",
+    "Description": "Offene Daten für die Lausitz-Region.",
+    "Founders": "Region Lausitz",
+    "LinkedIn Link": "https://www.linkedin.com/company/region-lausitz",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Lausitz"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Bodensee",
+    "Link": "https://opendata.bodensee.de",
+    "Description": "Offene Daten für die Bodensee-Region.",
+    "Founders": "Region Bodensee",
+    "LinkedIn Link": "https://www.linkedin.com/company/region-bodensee",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Bodensee"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Emsland",
+    "Link": "https://opendata.emsland.de",
+    "Description": "Offene Daten für das Emsland.",
+    "Founders": "Landkreis Emsland",
+    "LinkedIn Link": "https://www.linkedin.com/company/landkreis-emsland",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Emsland"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Allgäu",
+    "Link": "https://opendata.allgaeu.de",
+    "Description": "Offene Daten für die Allgäu-Region.",
+    "Founders": "Region Allgäu",
+    "LinkedIn Link": "https://www.linkedin.com/company/region-allgaeu",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Allgäu"],
+    "Level": "Region"
+  },
+  {
+    "Name": "Open Data Portal Harz",
+    "Link": "https://opendata.harz.de",
+    "Description": "Offene Daten für die Harz-Region.",
+    "Founders": "Region Harz",
+    "LinkedIn Link": "https://www.linkedin.com/company/region-harz",
+    "Type": "Regional Open-Data-Portal",
+    "Themes": ["Offene Daten", "Region"],
+    "Regions": ["Harz"],
+    "Level": "Region"
   }
 ]
