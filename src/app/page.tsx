@@ -142,7 +142,7 @@ export default function HomePage() {
       <BorderAnimation />
 
       {/* Fixed Top Bar */}
-<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50">
+<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50 shadow-lg shadow-black/4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <img
