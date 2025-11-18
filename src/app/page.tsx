@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 import labels from "@/data/labels.json";
@@ -30,6 +30,9 @@ export default function HomePage() {
   const [themeFilter, setThemeFilter] = useState("all");
   const [regionFilter, setRegionFilter] = useState("all");
   const [levelFilter, setLevelFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("name");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   // Extract unique values from platforms data
   const types = useMemo(() => {
@@ -61,6 +64,8 @@ export default function HomePage() {
     setThemeFilter("all");
     setRegionFilter("all");
     setLevelFilter("all");
+    setSortBy("name");
+    setCurrentPage(1);
   };
 
   // Download CSV function
@@ -136,6 +141,31 @@ export default function HomePage() {
       return matchesSearch && matchesType && matchesTheme && matchesRegion && matchesLevel;
     });
   }, [searchQuery, typeFilter, themeFilter, regionFilter, levelFilter]);
+
+  // Sort platforms
+  const sortedPlatforms = useMemo(() => {
+    return [...filteredPlatforms].sort((a, b) => {
+      switch (sortBy) {
+        case "name":
+          return a.Name.localeCompare(b.Name);
+        case "type":
+          return a.Type.localeCompare(b.Type);
+        case "level":
+          const levelOrder = { "Kommune": 1, "Land": 2, "EU": 3 };
+          return (levelOrder[a.Level as keyof typeof levelOrder] || 4) - (levelOrder[b.Level as keyof typeof levelOrder] || 4);
+        default:
+          return 0;
+      }
+    });
+  }, [filteredPlatforms, sortBy]);
+
+  // Paginate platforms
+  const paginatedPlatforms = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return sortedPlatforms.slice(startIndex, startIndex + itemsPerPage);
+  }, [sortedPlatforms, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(sortedPlatforms.length / itemsPerPage);
 
   return (
     <>
@@ -283,19 +313,34 @@ export default function HomePage() {
             </div>
 
 
-            <div className="mt-4 text-sm text-muted-foreground">
-              {labels.results.showing.replace("{count}", filteredPlatforms.length.toString()).replace("{total}", platforms.length.toString())}
+            <div className="mt-4 flex items-center justify-between">
+              <div className="text-sm text-muted-foreground">
+                {labels.results.showing.replace("{count}", paginatedPlatforms.length.toString()).replace("{total}", sortedPlatforms.length.toString())}
+              </div>
+              <Select value={sortBy} onValueChange={(value) => { setSortBy(value); setCurrentPage(1); }}>
+                <SelectTrigger className="w-48 rounded-none border-2">
+                  <div className="flex items-center gap-2">
+                    <ArrowUpDown size={16} />
+                    <SelectValue placeholder="Sortieren" />
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Nach Name</SelectItem>
+                  <SelectItem value="type">Nach Typ</SelectItem>
+                  <SelectItem value="level">Nach Ebene</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
           {/* Portal Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
-            {filteredPlatforms.length === 0 ? (
+            {paginatedPlatforms.length === 0 ? (
               <div className="col-span-full text-center py-16 text-muted-foreground">
                 {labels.results.none}
               </div>
             ) : (
-              filteredPlatforms.map((platform, index) => (
+              paginatedPlatforms.map((platform, index) => (
                 <a
                   key={index}
                   href={platform.Link}
@@ -341,10 +386,49 @@ export default function HomePage() {
               ))
             )}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-8">
+              <Button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+                className="rounded-none border-2"
+              >
+                Vorherige
+              </Button>
+              
+              <div className="flex gap-1">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  const page = Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
+                  if (page > totalPages) return null;
+                  return (
+                    <Button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      variant={currentPage === page ? "default" : "outline"}
+                      className="rounded-none border-2 w-10 h-10"
+                    >
+                      {page}
+                    </Button>
+                  );
+                })}
+              </div>
+              
+              <Button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                variant="outline"
+                className="rounded-none border-2"
+              >
+                Nächste
+              </Button>
+            </div>
+          )}
+
         </div>
       </main>
-
-      {/* Footer */}
       <footer className="bg-foreground text-background mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
