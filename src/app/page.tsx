@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 
@@ -206,7 +206,7 @@ export default function HomePage() {
   <Select value={typeFilter} onValueChange={setTypeFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
-        <Filter size={16} />
+        <TvMinimal size={16} />
         <SelectValue placeholder="Type" />
       </div>
     </SelectTrigger>
@@ -221,7 +221,7 @@ export default function HomePage() {
   <Select value={themeFilter} onValueChange={setThemeFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
-        <Filter size={16} />
+        <Columns3 size={16} />
         <SelectValue placeholder="Theme" />
       </div>
     </SelectTrigger>
@@ -236,7 +236,7 @@ export default function HomePage() {
   <Select value={regionFilter} onValueChange={setRegionFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
-        <Filter size={16} />
+        <MapPin size={16} />
         <SelectValue placeholder="Region" />
       </div>
     </SelectTrigger>
@@ -251,7 +251,7 @@ export default function HomePage() {
   <Select value={levelFilter} onValueChange={setLevelFilter}>
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
-        <Filter size={16} />
+        <Landmark size={16} />
         <SelectValue placeholder="Level" />
       </div>
     </SelectTrigger>
