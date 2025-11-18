@@ -1,0 +1,64 @@
+{
+  "search": {
+    "placeholder": "Suche Portale..."
+  },
+  "filters": {
+    "type": {
+      "placeholder": "Type",
+      "all": "Alle Arten"
+    },
+    "theme": {
+      "placeholder": "Theme",
+      "all": "Alle Themen"
+    },
+    "region": {
+      "placeholder": "Region",
+      "all": "Alle Regionen"
+    },
+    "level": {
+      "placeholder": "Level",
+      "all": "Alle Ebenen"
+    },
+    "reset": {
+      "text": "Filter zurücksetzen",
+      "short": "Reset"
+    }
+  },
+  "buttons": {
+    "share": "Teilen",
+    "download": "CSV herunterladen",
+    "suggest": "Portal ergänzen"
+  },
+  "results": {
+    "showing": "Zeige {count} von {total} Portalen",
+    "none": "Keine Portale gefunden, die deinen Filtern entsprechen."
+  },
+  "cards": {
+    "learnMore": "Mehr erfahren →",
+    "foundedBy": "Gegründet von:",
+    "visit": "Zum Portal →"
+  },
+  "csv": {
+    "headers": ["Name", "Type", "Link", "Description", "Themes", "Regions", "Level"]
+  },
+  "share": {
+    "text": "Check out these transparency portals: {url}",
+    "copied": "Link copied to clipboard!"
+  },
+  "footer": {
+    "impressum": {
+      "title": "Impressum",
+      "content": "PolitIQS\nTransparency Platforms Portal\nAlle Rechte vorbehalten."
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "content": "Diese Website stellt eine Sammlung von Transparenzportalen zur Verfügung.",
+      "link": "GitHub Repository"
+    },
+    "copyright": {
+      "title": "Copyright",
+      "content": "© 2025 PolitIQS. All rights reserved.\nOpen Source Project"
+    },
+    "disclaimer": "Diese Plattform wird bereitgestellt \"wie besehen\" ohne Gewährleistungen jeglicher Art."
+  }
+}

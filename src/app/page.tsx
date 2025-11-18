@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
+import labels from "@/data/labels.json";
 
 interface Platform {
   Name: string;
@@ -64,7 +65,7 @@ export default function HomePage() {
 
   // Download CSV function
   const downloadCSV = () => {
-    const headers = ["Name", "Type", "Link", "Description", "Themes", "Regions", "Level"];
+    const headers = labels.csv.headers;
     const csvContent = [
       headers.join(","),
       ...filteredPlatforms.map(p =>
@@ -91,7 +92,7 @@ export default function HomePage() {
 
   // Share function
   const sharePortals = () => {
-    const text = `Check out these transparency portals: ${window.location.href}`;
+    const text = labels.share.text.replace("{url}", window.location.href);
     if (navigator.share) {
       navigator.share({
         title: "Transparency Portals",
@@ -99,7 +100,7 @@ export default function HomePage() {
       });
     } else {
       navigator.clipboard.writeText(text);
-      alert("Link copied to clipboard!");
+      alert(labels.share.copied);
     }
   };
 
@@ -161,7 +162,7 @@ export default function HomePage() {
               hover:text-foreground hover:bg-background flex items-center gap-2"
             >
               <Share2 size={16} />
-              Teilen
+              {labels.buttons.share}
             </Button>
             <Button
               onClick={downloadCSV}
@@ -170,7 +171,7 @@ export default function HomePage() {
               hover:text-foreground hover:bg-background flex items-center gap-2"
             >
               <Download size={16} />
-              CSV herunterladen
+              {labels.buttons.download}
             </Button>
             <Button
               onClick={suggestEdit}
@@ -179,7 +180,7 @@ export default function HomePage() {
               hover:text-foreground hover:bg-background flex items-center gap-2"
             >
               <MessageSquare size={16} />
-              Portal ergänzen
+              {labels.buttons.suggest}
             </Button>
           </div>
         </div>
@@ -197,7 +198,7 @@ export default function HomePage() {
             <Search className="absolute left-4 top-3.5 text-muted-foreground" size={18} />
             <Input
               type="text"
-              placeholder="Suche Portale..."
+              placeholder={labels.search.placeholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full text-base rounded-none border-2 h-12 pl-12"
@@ -208,11 +209,11 @@ export default function HomePage() {
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
         <TvMinimal size={16} />
-        <SelectValue placeholder="Type" />
+        <SelectValue placeholder={labels.filters.type.placeholder} />
       </div>
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="all">Alle Arten</SelectItem>
+      <SelectItem value="all">{labels.filters.type.all}</SelectItem>
       {types.map(type => (
         <SelectItem key={type} value={type}>{type}</SelectItem>
       ))}
@@ -223,11 +224,11 @@ export default function HomePage() {
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
         <Columns3 size={16} />
-        <SelectValue placeholder="Theme" />
+        <SelectValue placeholder={labels.filters.theme.placeholder} />
       </div>
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="all">Alle Themen</SelectItem>
+      <SelectItem value="all">{labels.filters.theme.all}</SelectItem>
       {themes.map(theme => (
         <SelectItem key={theme} value={theme}>{theme}</SelectItem>
       ))}
@@ -238,11 +239,11 @@ export default function HomePage() {
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
         <MapPin size={16} />
-        <SelectValue placeholder="Region" />
+        <SelectValue placeholder={labels.filters.region.placeholder} />
       </div>
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="all">Alle Regionen</SelectItem>
+      <SelectItem value="all">{labels.filters.region.all}</SelectItem>
       {regions.map(region => (
         <SelectItem key={region} value={region}>{region}</SelectItem>
       ))}
@@ -253,11 +254,11 @@ export default function HomePage() {
     <SelectTrigger className="w-full rounded-none border-2">
       <div className="flex items-center gap-2">
         <Landmark size={16} />
-        <SelectValue placeholder="Level" />
+        <SelectValue placeholder={labels.filters.level.placeholder} />
       </div>
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="all">Alle Ebenen</SelectItem>
+      <SelectItem value="all">{labels.filters.level.all}</SelectItem>
       {levels.map(level => (
         <SelectItem key={level} value={level}>{level}</SelectItem>
       ))}
@@ -270,15 +271,15 @@ export default function HomePage() {
     className="w-full rounded-none border-2 border-border hover:bg-foreground hover:text-background transition-colors flex items-center justify-center gap-2"
   >
     <RotateCcw size={16} />
-    <span className="hidden sm:inline">Filter zurücksetzen</span>
-    <span className="sm:hidden">Reset</span>
+    <span className="hidden sm:inline">{labels.filters.reset.text}</span>
+    <span className="sm:hidden">{labels.filters.reset.short}</span>
   </Button>
 </div>
             </div>
 
 
             <div className="mt-4 text-sm text-muted-foreground">
-              Zeige {filteredPlatforms.length} von {platforms.length} Portalen
+              {labels.results.showing.replace("{count}", filteredPlatforms.length.toString()).replace("{total}", platforms.length.toString())}
             </div>
           </div>
 
@@ -286,7 +287,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
             {filteredPlatforms.length === 0 ? (
               <div className="col-span-full text-center py-16 text-muted-foreground">
-                Keine Portale gefunden, die deinen Filtern entsprechen.
+                {labels.results.none}
               </div>
             ) : (
               filteredPlatforms.map((platform, index) => (
@@ -311,7 +312,7 @@ export default function HomePage() {
                           </h2>
                         </div>
                         <div className="text-sm text-muted-foreground font-medium">
-                          Mehr erfahren →
+                          {labels.cards.learnMore}
                         </div>
                       </div>
 
@@ -322,11 +323,11 @@ export default function HomePage() {
                             {platform.Description}
                           </p>
                           <div className="text-xs opacity-75">
-                            <span className="font-semibold">Gegründet von:</span> {platform.Founders}
+                            <span className="font-semibold">{labels.cards.foundedBy}</span> {platform.Founders}
                           </div>
                         </div>
                         <div className="text-sm font-medium opacity-90">
-                          Zum Portal →
+                          {labels.cards.visit}
                         </div>
                       </div>
                     </div>
@@ -343,32 +344,33 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
             <div>
-              <h3 className="font-bold mb-2">Impressum</h3>
+              <h3 className="font-bold mb-2">{labels.footer.impressum.title}</h3>
               <p className="opacity-80">
-                PolitIQS<br />
-                Transparency Platforms Portal<br />
-                Alle Rechte vorbehalten.
+                {labels.footer.impressum.content.split('\n').map((line, i) => (
+                  <span key={i}>{line}<br /></span>
+                ))}
               </p>
             </div>
             <div>
-              <h3 className="font-bold mb-2">Rechtliches</h3>
+              <h3 className="font-bold mb-2">{labels.footer.legal.title}</h3>
               <p className="opacity-80">
-                Diese Website stellt eine Sammlung von Transparenzportalen zur Verfügung.<br />
+                {labels.footer.legal.content}<br />
                 <a href="https://github.com/polit-iqs/platforms" className="underline hover:opacity-60 transition-opacity">
-                  GitHub Repository
+                  {labels.footer.legal.link}
                 </a>
               </p>
             </div>
             <div>
-              <h3 className="font-bold mb-2">Copyright</h3>
+              <h3 className="font-bold mb-2">{labels.footer.copyright.title}</h3>
               <p className="opacity-80">
-                © 2025 PolitIQS. All rights reserved.<br />
-                Open Source Project
+                {labels.footer.copyright.content.split('\n').map((line, i) => (
+                  <span key={i}>{line}<br /></span>
+                ))}
               </p>
             </div>
           </div>
           <div className="border-t border-background/20 mt-8 pt-8 text-xs opacity-60 text-center">
-            <p>Diese Plattform wird bereitgestellt "wie besehen" ohne Gewährleistungen jeglicher Art.</p>
+            <p>{labels.footer.disclaimer}</p>
           </div>
         </div>
       </footer>
