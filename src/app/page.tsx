@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3 } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 import labels from "@/data/labels.json";
@@ -32,7 +32,7 @@ export default function HomePage() {
   const [levelFilter, setLevelFilter] = useState("all");
   const [sortBy, setSortBy] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const [itemsPerPage, setItemsPerPage] = useState(20);
 
   // Extract unique values from platforms data
   const types = useMemo(() => {
@@ -66,6 +66,7 @@ export default function HomePage() {
     setLevelFilter("all");
     setSortBy("name");
     setCurrentPage(1);
+    setItemsPerPage(20);
   };
 
   // Download CSV function
@@ -313,23 +314,39 @@ export default function HomePage() {
             </div>
 
 
-            <div className="mt-4 flex items-center justify-between">
-              <div className="text-sm text-muted-foreground">
+            <div className="mt-4 flex items-center justify-between shadow-none">
+              <div className="text-sm text-muted-foreground shadow-none">
                 {labels.results.showing.replace("{count}", paginatedPlatforms.length.toString()).replace("{total}", sortedPlatforms.length.toString())}
               </div>
-              <Select value={sortBy} onValueChange={(value) => { setSortBy(value); setCurrentPage(1); }}>
-                <SelectTrigger className="w-48 rounded-none border-2">
-                  <div className="flex items-center gap-2">
-                    <ArrowUpDown size={16} />
-                    <SelectValue placeholder="Sortieren" />
-                  </div>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="name">Nach Name</SelectItem>
-                  <SelectItem value="type">Nach Typ</SelectItem>
-                  <SelectItem value="level">Nach Ebene</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="flex items-center gap-2">
+                <Select value={itemsPerPage.toString()} onValueChange={(value) => { setItemsPerPage(parseInt(value)); setCurrentPage(1); }}>
+                  <SelectTrigger className="w-32 rounded-none border-none shadow-none">
+                    <div className="flex items-center gap-2">
+                      <Grid3X3 size={16} />
+                      <SelectValue placeholder="Pro Seite" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="15">15</SelectItem>
+                    <SelectItem value="30">30</SelectItem>
+                    <SelectItem value="60">60</SelectItem>
+                    <SelectItem value="90">90</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={sortBy} onValueChange={(value) => { setSortBy(value); setCurrentPage(1); }}>
+                  <SelectTrigger className="w-48 rounded-none border-none shadow-none">
+                    <div className="flex items-center gap-2">
+                      <ArrowUpDown size={16} />
+                      <SelectValue placeholder="Sortieren" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="name">Nach Name</SelectItem>
+                    <SelectItem value="type">Nach Typ</SelectItem>
+                    <SelectItem value="level">Nach Ebene</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
 
