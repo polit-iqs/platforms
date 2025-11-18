@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3 } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3, Star } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 import labels from "@/data/labels.json";
@@ -33,6 +33,42 @@ export default function HomePage() {
   const [sortBy, setSortBy] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(30);
+  const [starred, setStarred] = useState<string[]>([]);
+  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
+
+  // Load starred from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('starred-platforms');
+    if (saved) {
+      setStarred(JSON.parse(saved));
+    }
+  }, []);
+
+  // Save starred to localStorage
+  useEffect(() => {
+    localStorage.setItem('starred-platforms', JSON.stringify(starred));
+  }, [starred]);
+
+  // Toggle star
+  const toggleStar = (platformName: string) => {
+    setStarred(prev => 
+      prev.includes(platformName) 
+        ? prev.filter(name => name !== platformName)
+        : [...prev, platformName]
+    );
+  };
+
+  // Toggle card flip
+  const toggleFlip = (platformName: string) => {
+    setFlippedCards(prev => {
+      const newSet = new Set<string>();
+      if (!prev.has(platformName)) {
+        newSet.add(platformName);
+      }
+      // If it was already flipped, clear it (unflip)
+      return newSet;
+    });
+  };
 
   // Extract unique values from platforms data
   const types = useMemo(() => {
@@ -358,19 +394,25 @@ export default function HomePage() {
               </div>
             ) : (
               paginatedPlatforms.map((platform, index) => (
-                <a
+                <div
                   key={index}
-                  href={platform.Link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="group block"
                 >
-                  <Card className="h-[280px] relative overflow-hidden border-2 border-border hover:border-foreground transition-all duration-300 cursor-pointer perspective-1000 p-0 rounded-none">
+                  <Card className="h-[280px] relative overflow-hidden border-2 border-border hover:border-foreground transition-all duration-300 cursor-pointer perspective-1000 p-0 rounded-none" onClick={() => toggleFlip(platform.Name)}>
                     {/* Card Inner - Flip Container */}
-                    <div className="relative w-full h-full transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+                    <div className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${flippedCards.has(platform.Name) ? 'rotate-y-180' : ''}`}>
                       {/* Front Face */}
                       <div className="absolute inset-0 w-full h-full backface-hidden bg-card p-6 flex flex-col justify-between">
-                        <div>
+                        <div className="relative">
+                          <button
+                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleStar(platform.Name); }}
+                            className="absolute top-0 right-0 p-2 hover:bg-muted rounded-full transition-colors"
+                          >
+                            <Star 
+                              size={20} 
+                              className={starred.includes(platform.Name) ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"} 
+                            />
+                          </button>
                           <div className="inline-block px-3 py-1 bg-foreground text-background text-xs font-medium rounded-none mb-4">
                             {platform.Type}
                           </div>
@@ -394,12 +436,19 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="text-sm font-medium opacity-90">
-                          {labels.cards.visit}
+                          <a 
+                            href={platform.Link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:underline"
+                          >
+                            {labels.cards.visit}
+                          </a>
                         </div>
                       </div>
                     </div>
                   </Card>
-                </a>
+                </div>
               ))
             )}
           </div>
