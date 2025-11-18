@@ -185,7 +185,7 @@ export default function HomePage() {
         </div>
       </div>
 
-<main className="min-h-screen bg-[radial-gradient(circle,_white_0%,_white_55%,_#f1f5f9_100%)] px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
+<main className="min-h-screen bg-[radial-gradient(circle,_white_0%,_white_55%,_#f1f5f9_100%)] bg-fixed px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
 
         <div className="max-w-7xl mx-auto py-8">
           {/* Header - Description section */}
@@ -267,7 +267,7 @@ export default function HomePage() {
   <Button
     onClick={resetFilters}
     variant="outline"
-    className="w-full rounded-none border-2 hover:bg-foreground hover:text-background transition-colors flex items-center justify-center gap-2"
+    className="w-full rounded-none border-2 border-border hover:bg-foreground hover:text-background transition-colors flex items-center justify-center gap-2"
   >
     <RotateCcw size={16} />
     <span className="hidden sm:inline">Filter zurücksetzen</span>
@@ -337,6 +337,41 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-foreground text-background mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            <div>
+              <h3 className="font-bold mb-2">Impressum</h3>
+              <p className="opacity-80">
+                PolitIQS<br />
+                Transparency Platforms Portal<br />
+                Alle Rechte vorbehalten.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold mb-2">Rechtliches</h3>
+              <p className="opacity-80">
+                Diese Website stellt eine Sammlung von Transparenzportalen zur Verfügung.<br />
+                <a href="https://github.com/polit-iqs/platforms" className="underline hover:opacity-60 transition-opacity">
+                  GitHub Repository
+                </a>
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold mb-2">Copyright</h3>
+              <p className="opacity-80">
+                © 2025 PolitIQS. All rights reserved.<br />
+                Open Source Project
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-background/20 mt-8 pt-8 text-xs opacity-60 text-center">
+            <p>Diese Plattform wird bereitgestellt "wie besehen" ohne Gewährleistungen jeglicher Art.</p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
