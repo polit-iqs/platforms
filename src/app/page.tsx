@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 import labels from "@/data/labels.json";
@@ -146,13 +146,18 @@ export default function HomePage() {
 <div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50 shadow-lg shadow-black/4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img
-              src="/images/politiqs.png"
-              alt="Politiqs Logo"
-              className="h-15 w-auto select-none hover:scale-104 transition-transform"
-              draggable="false"
-            />
-        
+            <a href="https://politiqs.eu" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/images/politiqs.png"
+                alt="Politiqs Logo"
+                className="h-15 w-auto select-none hover:scale-104 transition-transform"
+                draggable="false"
+              />
+            </a>
+            <span className="bg-slate-200 text-slate-700 text-xs px-3 py-1 rounded-full font-medium border border-slate-300 flex items-center gap-1" title="This is a beta version of the platform">
+              <Info size={12} />
+              Beta
+            </span>
           </div>
           <div className="hidden md:flex items-center gap-2">
             <Button
