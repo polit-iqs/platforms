@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3, Star } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3, Star, LogOut } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
 import platformsData from "@/data/platforms.json";
 import labels from "@/data/labels.json";
@@ -25,7 +25,19 @@ interface Platform {
 const platforms: Platform[] = platformsData;
 
 export default function HomePage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Check password
+  const checkPassword = () => {
+    if (password === "politiqs2025") {
+      setIsAuthenticated(true);
+    } else {
+      alert("Falsches Passwort");
+      setPassword("");
+    }
+  };
   const [typeFilter, setTypeFilter] = useState("all");
   const [themeFilter, setThemeFilter] = useState("all");
   const [regionFilter, setRegionFilter] = useState("all");
@@ -206,57 +218,82 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Border Animations */}
-      <BorderAnimation />
-
-      {/* Fixed Top Bar */}
-<div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50 shadow-lg shadow-black/4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <a href="https://politiqs.eu" target="_blank" rel="noopener noreferrer">
-              <img
-                src="/images/politiqs.png"
-                alt="Politiqs Logo"
-                className="h-15 w-auto select-none hover:scale-104 transition-transform"
-                draggable="false"
+      {!isAuthenticated ? (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
+          <Card className="w-full max-w-md p-6">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold">Beta Access</CardTitle>
+              <CardDescription>
+                Bitte geben Sie das Passwort ein, um auf die Plattform zuzugreifen.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Input
+                type="password"
+                placeholder="Passwort eingeben"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && checkPassword()}
               />
-            </a>
-            <span className="bg-slate-200 text-slate-700 text-xs px-3 py-1 rounded-full font-medium border border-slate-300 flex items-center gap-1" title="This is a beta version of the platform">
-              <Info size={12} />
-              Beta
-            </span>
-          </div>
-          <div className="hidden md:flex items-center gap-2">
-            <Button
-              onClick={sharePortals}
-              variant="outline"
-              className="rounded-none border-2 text-sm bg-foreground text-background
-              hover:text-foreground hover:bg-background flex items-center gap-2"
-            >
-              <Share2 size={16} />
-              {labels.buttons.share}
-            </Button>
-            <Button
-              onClick={downloadCSV}
-              variant="outline"
-             className="rounded-none border-2 text-sm bg-foreground text-background
-              hover:text-foreground hover:bg-background flex items-center gap-2"
-            >
-              <Download size={16} />
-              {labels.buttons.download}
-            </Button>
-            <Button
-              onClick={suggestEdit}
-              variant="outline"
-                 className="rounded-none border-2 text-sm bg-foreground text-background
-              hover:text-foreground hover:bg-background flex items-center gap-2"
-            >
-              <MessageSquare size={16} />
-              {labels.buttons.suggest}
-            </Button>
-          </div>
+              <Button onClick={checkPassword} className="w-full">
+                Zugreifen
+              </Button>
+            </CardContent>
+          </Card>
         </div>
-      </div>
+      ) : (
+        <>
+          {/* Border Animations */}
+          <BorderAnimation />
+
+          {/* Fixed Top Bar */}
+          <div className="fixed top-0 left-0 right-0 bg-background/50 backdrop-blur-md z-50 shadow-lg shadow-black/4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <a href="https://politiqs.eu" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="/images/politiqs.png"
+                    alt="Politiqs Logo"
+                    className="h-15 w-auto select-none hover:scale-104 transition-transform"
+                    draggable="false"
+                  />
+                </a>
+                <span className="bg-slate-200 text-slate-700 text-xs px-3 py-1 rounded-full font-medium border border-slate-300 flex items-center gap-1" title="This is a beta version of the platform">
+                  <Info size={12} />
+                  Beta
+                </span>
+              </div>
+              <div className="hidden md:flex items-center gap-2">
+                <Button
+                  onClick={sharePortals}
+                  variant="outline"
+                  className="rounded-none border-2 text-sm bg-foreground text-background
+                  hover:text-foreground hover:bg-background flex items-center gap-2"
+                >
+                  <Share2 size={16} />
+                  {labels.buttons.share}
+                </Button>
+                <Button
+                  onClick={downloadCSV}
+                  variant="outline"
+                 className="rounded-none border-2 text-sm bg-foreground text-background
+                  hover:text-foreground hover:bg-background flex items-center gap-2"
+                >
+                  <Download size={16} />
+                  {labels.buttons.download}
+                </Button>
+                <Button
+                  onClick={suggestEdit}
+                  variant="outline"
+                     className="rounded-none border-2 text-sm bg-foreground text-background
+                  hover:text-foreground hover:bg-background flex items-center gap-2"
+                >
+                  <MessageSquare size={16} />
+                  {labels.buttons.suggest}
+                </Button>
+              </div>
+            </div>
+          </div>
 
 <main className="min-h-screen bg-[radial-gradient(circle,_white_0%,_white_55%,_#f1f5f9_100%)] bg-fixed px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
 
@@ -532,6 +569,8 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+        </>
+      )}
     </>
   );
 }
