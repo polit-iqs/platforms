@@ -173,6 +173,9 @@ def main():
         log("Airtable fetch completed successfully.")
 
         # Data validation before proceeding
+    except Exception as e:
+        log(f"An error occurred during the fetch process: {e}")
+        sys.exit(1)
        
 if __name__ == "__main__":
     main()
