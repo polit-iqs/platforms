@@ -5,8 +5,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3, Star, LogOut } from "lucide-react";
+import { Search, Share2, Download, MessageSquare, Filter, RotateCcw, TvMinimal, Columns3, MapPin, Landmark, Info, ArrowUpDown, Grid3X3, Star, LogOut, Map } from "lucide-react";
 import BorderAnimation from "@/components/BorderAnimation";
+import MapView from "@/components/MapView";
 import platformsData from "@/data/platforms.json";
 import labels from "@/data/labels.json";
 
@@ -47,6 +48,7 @@ export default function HomePage() {
   const [itemsPerPage, setItemsPerPage] = useState(30);
   const [starred, setStarred] = useState<string[]>([]);
   const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
+  const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
 
   // Load starred from localStorage
   useEffect(() => {
@@ -264,6 +266,32 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="hidden md:flex items-center gap-2">
+                <div className="flex items-center gap-0 border-2 border-border">
+                  <Button
+                    onClick={() => setViewMode("grid")}
+                    variant={viewMode === "grid" ? "default" : "ghost"}
+                    className={`rounded-none border-none text-sm flex items-center gap-2 ${
+                      viewMode === "grid" 
+                        ? "bg-foreground text-background hover:bg-foreground hover:text-background" 
+                        : "bg-transparent hover:bg-muted"
+                    }`}
+                  >
+                    <Grid3X3 size={16} />
+                    Raster
+                  </Button>
+                  <Button
+                    onClick={() => setViewMode("map")}
+                    variant={viewMode === "map" ? "default" : "ghost"}
+                    className={`rounded-none border-none text-sm flex items-center gap-2 ${
+                      viewMode === "map" 
+                        ? "bg-foreground text-background hover:bg-foreground hover:text-background" 
+                        : "bg-transparent hover:bg-muted"
+                    }`}
+                  >
+                    <Map size={16} />
+                    Karte
+                  </Button>
+                </div>
                 <Button
                   onClick={sharePortals}
                   variant="outline"
@@ -423,14 +451,23 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Portal Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
-            {paginatedPlatforms.length === 0 ? (
-              <div className="col-span-full text-center py-16 text-muted-foreground">
-                {labels.results.none}
-              </div>
-            ) : (
-              paginatedPlatforms.map((platform, index) => (
+          {/* View Content - Grid or Map */}
+          {viewMode === "map" ? (
+            <MapView 
+              platforms={sortedPlatforms} 
+              starred={starred} 
+              toggleStar={toggleStar}
+            />
+          ) : (
+            <>
+              {/* Portal Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+                {paginatedPlatforms.length === 0 ? (
+                  <div className="col-span-full text-center py-16 text-muted-foreground">
+                    {labels.results.none}
+                  </div>
+                ) : (
+                  paginatedPlatforms.map((platform, index) => (
                 <div
                   key={index}
                   className="group block"
@@ -489,12 +526,12 @@ export default function HomePage() {
                     </div>
                   </Card>
                 </div>
-              ))
-            )}
-          </div>
+                  ))
+                )}
+              </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
+              {/* Pagination */}
+              {totalPages > 1 && (
             <div className="flex justify-center items-center gap-2 mt-8">
               <Button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -531,6 +568,8 @@ export default function HomePage() {
                 Nächste
               </Button>
             </div>
+              )}
+            </>
           )}
 
         </div>
